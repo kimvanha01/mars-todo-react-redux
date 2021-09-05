@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import './App.scss';
+import Header from './components/Header';
+import TabFilter from './components/TabFilter';
+import TodoList from './components/TodoList';
+import { getTodosThunk } from './store/thunk';
+
+toast.configure();
 
 function App() {
+  const loading = useSelector(state => state.loading);
+  const success = useSelector(state => state.success);
+  const todoList = useSelector(state => state.todoListFilter);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTodosThunk());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (success) {
+      toast.success(loading, { autoClose: 2000 });
+    }
+  }, [loading, success, todoList]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="todo">
+        <Header />
+        <TabFilter />
+        <TodoList />
+      </div>
     </div>
   );
 }
 
 export default App;
+
