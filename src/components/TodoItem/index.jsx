@@ -50,8 +50,7 @@ export const TodoItem = ({ todoItem }) => {
             <div
                 className={classNames("todoItem__title", {
                     todoItem__title_cpl: checked,
-                })}
-            >
+                })}>
                 <span className="todoItem__title-name" onClick={handleChangeComplete}>
                     {todoItem.title}
                 </span>

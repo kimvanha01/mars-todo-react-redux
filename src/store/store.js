@@ -11,11 +11,6 @@ import {
 const addTodo = (todoList, todo) => {
     return [todo, ...todoList];
 };
-
-const deleteTodo = (todoList, id) => {
-    return todoList.filter((todo) => todo.id !== id);
-};
-
 const updateTodo = (todoList, todo) => {
     return todoList.map((temp) => {
         if (temp.id === todo.id) {
@@ -25,6 +20,11 @@ const updateTodo = (todoList, todo) => {
         }
     });
 };
+const deleteTodo = (todoList, id) => {
+    return todoList.filter((todo) => todo.id !== id);
+};
+
+
 
 const toggleTodo = (todoList, id) =>
     todoList.map((todo) => ({
@@ -43,11 +43,9 @@ const setFilter = (todoList, filter) => {
     }
 };
 
-
-
 const initState = {
     todoList: [],
-    filter: {},
+    filter: "all",
     todoListFilter: [],
     success: "",
     loading: "loadding",
