@@ -17,7 +17,7 @@ export const updateTodo = (todo) => ({
     payload: todo
 });
 export const deleteTodo = (id) => ({
-    type: UPDATE_TODO,
+    type: DELETE_TODO,
     payload: id
 });
 export const toggleTodo = (id) => ({
@@ -25,10 +25,10 @@ export const toggleTodo = (id) => ({
     payload: id,
 });
 
-// export const setFilter = (filter) => ({
-//     type: SET_FILTER,
-//     payload: filter,
-// });
+export const setFilter = (filter) => ({
+    type: SET_FILTER,
+    payload: filter,
+});
 
 export const setTodos = (todos) => ({
     type: SET_TODOS,

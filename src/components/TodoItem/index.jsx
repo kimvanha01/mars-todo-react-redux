@@ -3,7 +3,7 @@ import classNames from "classnames";
 import moment from "moment";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteTodoThunk } from "../../store/thunk";
+import { deleteTodoThunk, toggleTodoThunk } from "../../store/thunk";
 import "../FontAwesome";
 import Modal from "../Modal";
 import TodoForm from "../TodoForm";
@@ -19,17 +19,17 @@ export const TodoItem = ({ todoItem }) => {
             const now = new Date();
             const deadline = new Date(todoItem?.deadline);
             const a = deadline.getTime() - now.getTime();
-            console.log(deadline)
+            // console.log(deadline);
             return a < 60 * 60 * 1000;
         }
         return false;
     };
 
     const handleChangeComplete = () => {
-        // const newTodo = { ...todoItem };
-        // newTodo.isCompleted = !newTodo.isCompleted;
-        // dispatch(toggleTodoThunk(newTodo));
-        // setChecked(newTodo.isCompleted);
+        const newTodo = { ...todoItem };
+        newTodo.isCompleted = !newTodo.isCompleted;
+        dispatch(toggleTodoThunk(newTodo));
+        setChecked(newTodo.isCompleted);
     };
 
     const handleClickUpdate = () => {
@@ -77,8 +77,6 @@ export const TodoItem = ({ todoItem }) => {
                 icon={["fa", "trash"]}
                 onClick={handleClickDelete}
             />
-
-
 
             <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
                 <TodoForm

@@ -7,7 +7,7 @@ export const getTodosThunk = () => async (dispatch) => {
         const response = await actionsAPI.getTodosAPI();
         dispatch(actions.getTodos(response.data));
     } catch (error) {
-        toast.error(error.message, { autoClose: 3000 });
+        toast.error(error.message, { autoClose: 2000 });
     }
 }
 export const addTodoThunk = (todo) => async (dispatch) => {
@@ -15,7 +15,7 @@ export const addTodoThunk = (todo) => async (dispatch) => {
         await actionsAPI.addTodoAPI(todo);
         dispatch(actions.addTodo(todo));
     } catch (error) {
-        toast.error(error.message, { autoClose: 3000 });
+        toast.error(error.message, { autoClose: 2000 });
     }
 }
 export const updateTodoThunk = (todo) => async (dispatch) => {
@@ -23,7 +23,7 @@ export const updateTodoThunk = (todo) => async (dispatch) => {
         await actionsAPI.updateTodoAPI(todo);
         dispatch(actions.updateTodo(todo));
     } catch (error) {
-        toast.error(error.message, { autoClose: 3000 });
+        toast.error(error.message, { autoClose: 2000 });
     }
 }
 export const deleteTodoThunk = (id) => async (dispatch) => {
@@ -31,6 +31,14 @@ export const deleteTodoThunk = (id) => async (dispatch) => {
         await actionsAPI.deleteTodoAPI(id);
         dispatch(actions.deleteTodo(id));
     } catch (error) {
-        toast.error(error.message, { autoClose: 3000 });
+        toast.error(error.message, { autoClose: 2000 });
+    }
+}
+export const toggleTodoThunk = (todo) => async (dispatch) => {
+    try {
+        await actionsAPI.updateTodoAPI(todo);
+        dispatch(actions.toggleTodo(todo.id));
+    } catch (error) {
+        toast.error(error.message, { autoClose: 2000 });
     }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import Header from './components/Header';
 import TabFilter from './components/TabFilter';
@@ -16,18 +17,22 @@ function App() {
 
   const dispatch = useDispatch();
 
+  //get Todo
   useEffect(() => {
     dispatch(getTodosThunk());
   }, [dispatch]);
 
+  //Toast noti
   useEffect(() => {
     if (success) {
       toast.success(loading, { autoClose: 2000 });
     }
   }, [loading, success, todoList]);
+
   return (
     <div className="App">
       <div className="todo">
+        <ToastContainer />
         <Header />
         <TabFilter />
         <TodoList />
